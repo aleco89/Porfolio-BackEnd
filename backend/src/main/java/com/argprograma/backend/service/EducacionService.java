@@ -25,7 +25,12 @@ public class EducacionService implements IEducacionService{
 
     @Override
     public void updateEducacion(Educacion edu) {
-        eduRepo.save(edu);
+        Educacion educacion=findEducacion(edu.getId());
+        educacion.setEducacion(edu.getEducacion());
+        educacion.setPeriodo(edu.getPeriodo());
+        educacion.setInstitucion(edu.getInstitucion());
+        educacion.setLogoInstitucion(edu.getLogoInstitucion());
+        eduRepo.save(educacion);
     }
 
     @Override

@@ -24,8 +24,17 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public void updatePersona(Persona edu) {
-        persoRepo.save(edu);
+    public void updatePersona(Persona perso) {
+        Persona persona=findPersona(perso.getId());
+        persona.setNombre(perso.getNombre());
+        persona.setApellido(perso.getApellido());
+        persona.setProfesion(perso.getProfesion());
+        persona.setSobreMi(perso.getSobreMi());
+        persona.setEmail(perso.getEmail());
+        persona.setFotoPerfil(perso.getFotoPerfil());
+        persona.setFotoPortada(perso.getFotoPortada());
+        persona.setLugarResidencia(perso.getLugarResidencia());
+        persoRepo.save(persona);
     }
 
     @Override

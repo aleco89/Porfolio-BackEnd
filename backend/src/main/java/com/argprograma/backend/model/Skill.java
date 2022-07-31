@@ -30,6 +30,6 @@ public class Skill implements Serializable {
         this.skill = skill;
         this.porcentaje = porcentaje;
     }
-
     
+        
 }

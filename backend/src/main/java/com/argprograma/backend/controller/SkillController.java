@@ -37,7 +37,7 @@ public class SkillController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
     
-    @GetMapping ("/educacion/ver/{id}")
+    @GetMapping ("/ver/{id}")
     public ResponseEntity<Skill> findSkill (@PathVariable Long id){
        Skill skill= skServ.findSkill(id);
        return new ResponseEntity<>(skill, HttpStatus.OK);

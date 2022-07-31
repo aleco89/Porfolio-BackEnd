@@ -24,7 +24,10 @@ public class IdiomaService implements IIdiomaService{
 
     @Override
     public void updateIdioma(Idioma idioma) {
-        idiRepo.save(idioma);
+        Idioma idi=findIdioma(idioma.getId());
+        idi.setIdioma(idioma.getIdioma());
+        idi.setNivel(idioma.getNivel());
+        idiRepo.save(idi);
     }
 
     @Override

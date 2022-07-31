@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,25 +31,25 @@ public class ProyectoController {
         List<Proyecto> proyectos=proyServ.findAllProyecto();
         return new ResponseEntity(proyectos, HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/new")
     public ResponseEntity<?> createProyecto (@RequestBody Proyecto proy){
         proyServ.createProyecto(proy);
         return new ResponseEntity(HttpStatus.CREATED);
     }
     
-    @GetMapping ("/educacion/ver/{id}")
+    @GetMapping ("/ver/{id}")
     public ResponseEntity<Proyecto> findProyecto (@PathVariable Long id){
        Proyecto proyecto= proyServ.findProyecto(id);
        return new ResponseEntity<>(proyecto, HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/edit")
     public ResponseEntity<?> updateProyecto (@RequestBody Proyecto proy){
         proyServ.updateProyecto(proy);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public ResponseEntity<?> deleteProyecto (@PathVariable Long id){
         proyServ.deleteProyecto(id);

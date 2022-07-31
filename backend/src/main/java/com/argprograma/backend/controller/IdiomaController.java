@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,25 +31,25 @@ public class IdiomaController {
         List<Idioma> idiomas=idiServ.findAllIdioma();
         return new ResponseEntity(idiomas, HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/new")
     public ResponseEntity<?> createIdioma (@RequestBody Idioma idioma){
         idiServ.createIdioma(idioma);
         return new ResponseEntity(HttpStatus.CREATED);
     }
     
-    @GetMapping ("/educacion/ver/{id}")
+    @GetMapping ("/ver/{id}")
     public ResponseEntity<Idioma> findIdioma (@PathVariable Long id){
        Idioma educacion= idiServ.findIdioma(id);
        return new ResponseEntity<>(educacion, HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/edit")
     public ResponseEntity<?> updateIdioma (@RequestBody Idioma idioma){
         idiServ.updateIdioma(idioma);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public ResponseEntity<?> deleteIdioma (@PathVariable Long id){
         idiServ.deleteIdioma(id);

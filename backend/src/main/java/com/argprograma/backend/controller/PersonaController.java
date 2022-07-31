@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +37,12 @@ public class PersonaController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
     
-    @GetMapping ("/educacion/ver/{id}")
+    @GetMapping ("/ver/{id}")
     public ResponseEntity<Persona> findPersona (@PathVariable Long id){
        Persona persona= persoServ.findPersona(id);
        return new ResponseEntity<>(persona, HttpStatus.OK);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/edit")
     public ResponseEntity<?> updatePersona (@RequestBody Persona persona){
         persoServ.updatePersona(persona);

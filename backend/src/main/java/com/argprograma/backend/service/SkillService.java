@@ -25,7 +25,10 @@ public class SkillService implements ISkillService{
 
     @Override
     public void updateSkill(Skill skill) {
-        skRepo.save(skill);
+        Skill sk=findSkill(skill.getId());
+        sk.setSkill(skill.getSkill());
+        sk.setPorcentaje(skill.getPorcentaje());
+        skRepo.save(sk);
     }
 
     @Override

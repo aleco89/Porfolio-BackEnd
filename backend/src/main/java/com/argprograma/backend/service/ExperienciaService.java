@@ -24,7 +24,13 @@ public class ExperienciaService implements IExperienciaService{
 
     @Override
     public void updateExperiencia(Experiencia expe) {
-        expeRepo.save(expe);
+        Experiencia experiencia=findExperiencia(expe.getId());
+        experiencia.setTrabajo(expe.getTrabajo());
+        experiencia.setDescripcionTrabajo(expe.getDescripcionTrabajo());
+        experiencia.setPeriodo(expe.getPeriodo());
+        experiencia.setLugar(expe.getLugar());
+        experiencia.setLogo(expe.getLogo());
+        expeRepo.save(experiencia);
     }
 
     @Override

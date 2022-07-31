@@ -16,7 +16,7 @@ public class Experiencia implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-    private String experiencia;
+    private String trabajo;
     private String periodo;
     private String descripcionTrabajo;
     private String lugar;
@@ -25,15 +25,13 @@ public class Experiencia implements Serializable {
     public Experiencia() {
     }
 
-    public Experiencia(Long id, String experiencia, String periodo, String descripcionTrabajo, String lugar, String logo) {
+    public Experiencia(Long id, String trabajo, String periodo, String descripcionTrabajo, String lugar, String logo) {
         this.id = id;
-        this.experiencia = experiencia;
+        this.trabajo = trabajo;
         this.periodo = periodo;
         this.descripcionTrabajo = descripcionTrabajo;
         this.lugar = lugar;
         this.logo = logo;
-    }
-    
-    
+    }         
 
 }

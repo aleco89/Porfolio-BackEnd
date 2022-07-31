@@ -19,13 +19,18 @@ public class ProyectoService implements IProyectoService{
     }
 
     @Override
-    public void createProyecto(Proyecto edu) {
-        proyRepo.save(edu);
+    public void createProyecto(Proyecto proy) {
+        proyRepo.save(proy);
     }
 
     @Override
-    public void updateProyecto(Proyecto edu) {
-        proyRepo.save(edu);
+    public void updateProyecto(Proyecto proy) {
+        Proyecto proyecto=findProyecto(proy.getId());
+        proyecto.setNombre(proy.getNombre());
+        proyecto.setComitente(proy.getComitente());
+        proyecto.setDescripcion(proy.getDescripcion());
+        proyecto.setFoto(proy.getFoto());
+        proyRepo.save(proyecto);
     }
 
     @Override
